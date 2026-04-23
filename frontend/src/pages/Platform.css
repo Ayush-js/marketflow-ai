@@ -1,0 +1,74 @@
+.platform { min-height: 100vh; padding-bottom: 4rem; }
+
+.platform-inner {
+  padding-top: 5rem;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  grid-template-rows: auto 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .platform-inner { grid-template-columns: 1fr; }
+}
+
+/* ── Stepper ─────────────────────────────────────────────── */
+.stepper {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 0;
+  background: var(--clr-surface); border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg); padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.stepper-item { display: flex; align-items: center; flex: 1; }
+
+.stepper-btn {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.5rem 0.75rem; border-radius: var(--radius-md);
+  transition: background var(--transition); text-align: left;
+  flex: 1;
+}
+.stepper-btn:hover { background: rgba(255,255,255,.05); }
+.stepper-btn.active { background: rgba(255,255,255,.07); }
+
+.stepper-icon { font-size: 1.25rem; opacity: 0.6; }
+.stepper-btn.active .stepper-icon { opacity: 1; }
+.stepper-btn.done .stepper-icon { color: #10b981; opacity: 1; }
+
+.stepper-labels { display: flex; flex-direction: column; }
+.stepper-num  { font-size: 0.68rem; color: var(--clr-faint); }
+.stepper-name { font-size: 0.9rem; font-weight: 500; color: var(--clr-muted); }
+.stepper-btn.active .stepper-name { color: var(--clr-text); }
+
+/* Stage accent underline on active */
+.stepper-btn.stage-plan.active   .stepper-name { color: #a78bfa; }
+.stepper-btn.stage-gen.active    .stepper-name { color: #67e8f9; }
+.stepper-btn.stage-deploy.active .stepper-name { color: #6ee7b7; }
+
+.stepper-line {
+  flex: 0 0 40px; height: 1px; background: var(--clr-border);
+  transition: background var(--transition);
+}
+.stepper-line.done { background: var(--clr-primary); }
+
+@media (max-width: 600px) {
+  .stepper { padding: 0.75rem; gap: 0.25rem; }
+  .stepper-labels { display: none; }
+  .stepper-line { flex: 0 0 20px; }
+}
+
+/* ── Stage content ───────────────────────────────────────── */
+.stage-content { grid-column: 1; }
+
+/* ── Workflow summary ────────────────────────────────────── */
+.workflow-summary {
+  grid-column: 2;
+  position: sticky; top: 80px;
+  display: flex; flex-direction: column; gap: 0.75rem;
+}
+@media (max-width: 900px) { .workflow-summary { grid-column: 1; position: static; } }
+
+.workflow-summary h4 { font-size: 0.85rem; color: var(--clr-muted); margin-bottom: 0.25rem; }
+.summary-item { display: flex; flex-direction: column; gap: 0.3rem; }
